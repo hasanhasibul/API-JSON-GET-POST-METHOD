@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API JSON</title>
+</head>
+<body>
+    <h1>JSON</h1>
+    <h1>JAVASCRIPT OBJECT NOTATION</h1>
+    <!-- Using Get method -->
+    <h5 id="error"></h5>
+    <ul id="user-list">
+    </ul>
+
+    <!-- Using Post Method -->
+
+    <input id="title" type="text" placeholder="tile">
+    <br>
+    <input id="bodyContent" type="text" placeholder="say what you want to say">
+    <br>
+    <button id="submit">submit</button>
+
+    <h1 id="postContent"></h1>
+
+    <!-- javascript area -->
+    <script>
+        // get method
+       fetch('https://jsonplaceholder.typicode.com/users')
+       .then(response => response.json())
+       .then(json=>displayUsers(json))
+       .catch(error=>{
+        document.getElementById("error").innerText=error;
+       })
+
+       const ul = document.getElementById('user-list');
+
+       function displayUsers( users){
+        const userNameList = users.map(user => user.name);
+        console.log(userNameList)
+        for (let i = 0; i < userNameList.length; i++) {
+            const userName = userNameList[i];
+            const li = document.createElement('li');
+            li.innerText = userName;
+            ul.appendChild(li);    
+        }
+       }
+
+    //    post method
+        
+    document.getElementById('submit').addEventListener('click',function(){
+        const title = document.getElementById('title').value;
+        const bodyContent = document.getElementById('bodyContent').value;
+        const post ={
+            title:title,
+            body:bodyContent
+        }
+        postInServer(post);
+    })
+
+    function postInServer(postInfo){
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify(postInfo),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+        .then((response) => response.json())
+        .then((json) => postInSite(json));
+    }
+  
+    function postInSite(data){
+        document.getElementById('postContent').innerText=data.title;
+         console.log(data.body)
+    }
+    </script>
+</body>
+</html>
