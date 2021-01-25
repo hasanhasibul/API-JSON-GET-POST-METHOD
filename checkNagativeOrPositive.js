@@ -1,3 +1,4 @@
+// check its positive number or nagative number 
 function checkNumber (num){
     if(num<0){
         console.log(`it's a negative number`);
@@ -12,6 +13,7 @@ function checkNumber (num){
 
 checkNumber(0)
 
+// check it is vowel or consonent
 function wordChecker(word){
     const lowerCase = (word=='a' || word == 'e' || word == 'i' || word == 'o' || word == 'u' );
     const upperCase = (word=='A' || word == 'E' || word == 'I' || word == 'O' || word == 'U' );
@@ -23,7 +25,7 @@ function wordChecker(word){
     }
 }
 wordChecker('p');
-
+// check it is uppercase or lowercase
 function checkUpperCaseOrLowerCase (char){
     if(char >= 'A' && char <= 'Z'){
         console.log("upperCase")
@@ -33,7 +35,7 @@ function checkUpperCaseOrLowerCase (char){
     }
 }
 checkUpperCaseOrLowerCase('m')
-
+// find how much day in a month and its leap year or not
 function findDaysAndLeapYear(monthNumber,year){
     if (monthNumber ==2 && year % 4 ==0 ) {
         console.log(`it is february .and days has 29`);
